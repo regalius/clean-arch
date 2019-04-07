@@ -1,13 +1,24 @@
+all: test build
+clean:
+	@rm ./recom-engine
+	@rm ./perso-engine
+
 build:
-	go build ./cmd/recom-engine && \
-	go build ./cmd/perso-engine
+	@go build -race ./cmd/recom-engine && \
+	@go build -race ./cmd/perso-engine
 
-buildrecom:
-	go build ./cmd/recom-engine
+build-recom:
+	@go build ./cmd/recom-engine
 
-buildperso:
-	go build ./cmd/perso-engine
+build-perso:
+	@go build ./cmd/perso-engine
+
+dev-recom:
+	@go build ./cmd/recom-engine && ./recom-engine
+
+dev-perso:
+	@go build ./cmd/perso-engine && ./perso-engine
 
 test:
-	go test ./cmd/recom-engine && \
-	go test ./cmd/perso-engine
+	@go test -race ./cmd/recom-engine && \
+	@go test -race ./cmd/perso-engine

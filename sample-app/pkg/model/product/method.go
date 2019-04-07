@@ -7,12 +7,12 @@ import (
 	"strings"
 )
 
-// getFullImagePath : get full image path from image object
+// getFullImagePath get full image path from image object
 func (i Image) getFullImagePath() string {
 	return fmt.Sprintf("%s/%s", i.Path, i.Name)
 }
 
-// getURL: Get URL of the product given baseURL to be appended
+// getURL Get URL of the product given baseURL to be appended
 func (p Product) getURL(baseURL string) (result string) {
 	fullURL, err := url.Parse(baseURL)
 	if err != nil {

@@ -40,13 +40,13 @@ See the [`/cmd`](cmd/README.md) directory for examples.
 
 Private application and library code. This is the code you don't want others importing in their applications or libraries.
 
-Put your actual application code in the `/internal/app` directory (e.g., `/internal/app/myapp`) and the code shared by those apps in the `/internal/pkg` directory (e.g., `/internal/pkg/myprivlib`).
+### `/common`
+
+Globally used helper/utility functions, generally all functions that are placed here are pure functions that potentially be used accross multiple places in the repository
 
 ### `/pkg`
 
-Library code that's ok to use by external applications (e.g., `/pkg/mypubliclib`). Other projects will import these libraries expecting them to work, so think twice before you put something here :-)
-
-It's also a way to group Go code in one place when your root directory contains lots of non-Go components and directories making it easier to run various Go tools (as mentioned in the [`Best Practices for Industrial Programming`](https://www.youtube.com/watch?v=PTE4VJIdHPg) from GopherCon EU 2018).
+Library code that's ok to use by external applications. Other projects will import these libraries expecting them to work, so think twice before you put something here :-)
 
 See the [`/pkg`](pkg/README.md) directory if you want to see which popular Go repos use this project layout pattern. This is a common layout pattern, but it's not universally accepted and some in the Go community don't recommend it. 
 

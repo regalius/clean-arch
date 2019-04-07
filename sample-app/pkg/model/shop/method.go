@@ -7,12 +7,12 @@ import (
 	"strings"
 )
 
-// getFullImagePath : get full image path from image object
+// getFullImagePath get full image path from image object
 func (i Image) getFullImagePath() string {
 	return fmt.Sprintf("%s/%s", i.Path, i.Name)
 }
 
-// getgetPreviousNamesAsString: Get shop's previous names in comma delimited string
+// getgetPreviousNamesAsString Get shop's previous names in comma delimited string
 func (s Shop) getPreviousNamesAsString() (result string) {
 	if len(s.PreviousNames) > 0 {
 		result = strings.Join(s.PreviousNames, ",")
@@ -20,7 +20,7 @@ func (s Shop) getPreviousNamesAsString() (result string) {
 	return
 }
 
-// getURL: Get URL of the shops given baseURL to be appended
+// getURL Get URL of the shops given baseURL to be appended
 func (s Shop) getURL(baseURL string) (result string) {
 	fullURL, err := url.Parse(baseURL)
 	if err != nil {
@@ -32,12 +32,12 @@ func (s Shop) getURL(baseURL string) (result string) {
 	return
 }
 
-// getShopTypeString: Get Shop type in human readable string
+// getShopTypeString Get Shop type in human readable string
 func (s Shop) getShopTypeString() (result string) {
 	return shopTypesEnum[s.Type]
 }
 
-// getReputationBadgeString: Get Reputation in human readable string
+// getReputationBadgeString Get Reputation in human readable string
 func (s Shop) getReputationString() (result string) {
 	for _, enum := range shopReputationEnum {
 		if s.ReputationScore >= enum.Gt &&

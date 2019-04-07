@@ -2,7 +2,7 @@ package shop
 
 // ENUMS //
 var (
-	// shopTypesEnum: To infer shop's type to human readable string
+	// shopTypesEnum Enum that can be used to infer shop's type to human readable string
 	shopTypesEnum = map[int]string{
 		1:  "Normal",
 		2:  "Silver Member",
@@ -13,26 +13,26 @@ var (
 		91: "First Priority",
 	}
 
-	// shopReputationEnum: To infer shop's reputation score to human readable string
+	// shopReputationEnum Enum that can be used to infer shop's reputation score to human readable string
 	shopReputationEnum = []reputationBadgeMeta{
 		{
-			Gt:   0,
-			Lt:   100,
-			Name: "Newbs",
+			GreaterThan: 0,
+			LessThan:    100,
+			Name:        "Newbs",
 		},
 		{
-			Gt:   101,
-			Lt:   1000,
-			Name: "Startups",
+			GreaterThan: 101,
+			LessThan:    1000,
+			Name:        "Startups",
 		},
 		{
-			Gt:   1001,
-			Lt:   10000,
-			Name: "Corporations",
+			GreaterThan: 1001,
+			LessThan:    10000,
+			Name:        "Corporations",
 		},
 		{
-			Gt:   10001,
-			Name: "Giants",
+			GreaterThan: 10001,
+			Name:        "Giants",
 		},
 	}
 )
