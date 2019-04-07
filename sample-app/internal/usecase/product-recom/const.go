@@ -1,8 +1,8 @@
 package productrecom
 
-const (
+var (
 	// DefaultGetRecommendationForUserIDOptions default value for GetRecommendationForUserID method options
-	DefaultGetRecommendationForUserIDOptions = GetRecommendationForUserID{
-		Limit: 10
+	DefaultGetRecommendationForUserIDOptions = GetRecommendationForUserIDOptions{
+		Limit: 5,
 	}
 )

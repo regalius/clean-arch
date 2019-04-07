@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-// SliceAtoi : Convert given slice of string to slice of integer
+// SliceAtoi Convert given slice of string to slice of integer
 func SliceAtoi(stringSlice []string) (intSlice []int, err error) {
 	if stringSlice == nil {
 		err = errors.New("[SliceAtoi] stringSlice is nil")
@@ -23,7 +23,7 @@ func SliceAtoi(stringSlice []string) (intSlice []int, err error) {
 	return intSlice, nil
 }
 
-// SliceItoa : Convert given slice of integer to slice of string
+// SliceItoa Convert given slice of integer to slice of string
 func SliceItoa(intSlice []int) (stringSlice []string, err error) {
 	if intSlice == nil {
 		err = errors.New("[SliceItoa] intSlice is nil")
@@ -37,7 +37,7 @@ func SliceItoa(intSlice []int) (stringSlice []string, err error) {
 	return
 }
 
-// ConvertIntSliceToCommaDelimitedString : Convert Slice of ints to comma delimited string
+// ConvertIntSliceToCommaDelimitedString Convert Slice of ints to comma delimited string
 func ConvertIntSliceToCommaDelimitedString(intSlice []int) (str string, err error) {
 	if intSlice == nil {
 		err = errors.New("[ConvertIntSliceToCommaDelimitedString] intSlice is nil")
@@ -52,7 +52,7 @@ func ConvertIntSliceToCommaDelimitedString(intSlice []int) (str string, err erro
 	return
 }
 
-// ConvertStringSliceToCommaDelimitedString : Convert Slice of strings to comma delimited string
+// ConvertStringSliceToCommaDelimitedString Convert Slice of strings to comma delimited string
 func ConvertStringSliceToCommaDelimitedString(stringSlice []string) (str string, err error) {
 	if stringSlice == nil {
 		err = errors.New("[ConvertStringSliceToCommaDelimitedString] stringSlice is nil")

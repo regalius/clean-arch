@@ -5,8 +5,9 @@ package product
 
 import (
 	"context"
-	"github.com/regalius/clean-arch/sample-app/pkg/model/product"
 	"sync"
+
+	"github.com/regalius/clean-arch/sample-app/pkg/model/product"
 )
 
 var (
