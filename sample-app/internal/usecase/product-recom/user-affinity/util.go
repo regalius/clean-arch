@@ -8,7 +8,8 @@ import (
 
 // boostWithMagicFormula in user affinity magic formula's we only care about user product affinity order
 func boostWithMagicFormula(affinities []uPAModel.UserProductAffinity, limit int) (result []uPAModel.UserProductAffinity) {
-	return sort.Slice(affinities, func(i, j int) {
+	sort.Slice(affinities, func(i, j int) bool {
 		return affinities[i].AffinityScore < affinities[j].AffinityScore
-	})[0:limit]
+	})
+	return affinities[0:limit]
 }

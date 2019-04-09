@@ -7,6 +7,9 @@
 *.so
 *.dylib
 
+./recom-engine
+./perso-engine
+
 # Test binary, build with `go test -c`
 *.test
 

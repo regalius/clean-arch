@@ -2,18 +2,19 @@ package multiaffinity
 
 import (
 	"context"
+	"sync"
 
-	gPARepo "github.com/regalius/clean-arch/sample-app/internal/repository/gender-product-affinity"
+	sliceUtils "github.com/regalius/clean-arch/sample-app/common/slice"
 	gPAModel "github.com/regalius/clean-arch/sample-app/internal/model/gender-product-affinity"
 	uPAModel "github.com/regalius/clean-arch/sample-app/internal/model/user-product-affinity"
+	gPARepo "github.com/regalius/clean-arch/sample-app/internal/repository/gender-product-affinity"
+	uPARepo "github.com/regalius/clean-arch/sample-app/internal/repository/user-product-affinity"
 	pRecomUCase "github.com/regalius/clean-arch/sample-app/internal/usecase/product-recom"
 )
 
-func (uc productRecomDefaultUsecase) GetRecommendationByUserID(userID int64, options pRecomUCase.GetRecommendationByUserIDoptions) (recommendation pRecomUCase.SingleUserResult, err error) {
-
-	ctx := context.Background()
+func (uc productRecomMultiUsecase) GetRecommendationByUserID(ctx context.Context, userID int64, options pRecomUCase.GetRecommendationByUserIDOptions) (recommendation pRecomUCase.SingleUserResult, err error) {
 	user, err := uc.userRepo.GetUserByID(ctx, userID)
-	
+
 	var wg sync.WaitGroup
 	var gPAffinities []gPAModel.GenderProductAffinityWithScore
 	var uPAffinities []uPAModel.UserProductAffinity
@@ -21,20 +22,24 @@ func (uc productRecomDefaultUsecase) GetRecommendationByUserID(userID int64, opt
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		gPAffinities, err = genderPAffinityRepo.GetGenderProductAffinitiesByGender(
+		gPAffinities, err = uc.genderPAffinityRepo.GetGenderProductAffinitiesByGender(
 			ctx, user.Gender, genderThreshold,
 			gPARepo.GetGenderProductAffinitiesByGenderOptions{
-
-		})
-	}
+				Limit: options.Limit,
+			})
+	}()
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		uPAffinities, err = userPAffinityRepo.GetUserProductAffinityByUserID(ctx, user.ID)
-	}
+		uPAffinities, err = uc.userPAffinityRepo.GetUserProductAffinitiesByUserID(
+			ctx,
+			user.ID,
+			uPARepo.GetUserProductAffinitiesByUserIDOptions{},
+		)
+	}()
 	wg.Wait()
 
-	processedAffinities := boostWithMagicFormula(gPAffinities, uPAffinities)
+	processedAffinities := boostWithMagicFormula(gPAffinities, uPAffinities, options.Limit)
 
 	var selectedPIDs []int64
 	for _, affinity := range processedAffinities {
@@ -42,15 +47,16 @@ func (uc productRecomDefaultUsecase) GetRecommendationByUserID(userID int64, opt
 	}
 
 	products, err := uc.productRepo.GetByIDList(ctx, selectedPIDs)
-	
+
 	var productRecoms []pRecomUCase.ProductRecom
-	for index, product := products {
+	for _, product := range products {
 		affinityArrIndex := sliceUtils.IndexOfInt64(selectedPIDs, product.ID)
 
 		productRecom := pRecomUCase.ProductRecom{
-			Product: product,
-			Affinity: processedAffinities[affinityArrIndex],
+			Product:  product,
+			Affinity: processedAffinities[affinityArrIndex].AffinityScore,
 		}
+		productRecoms = append(productRecoms, productRecom)
 	}
 
 	recommendation.SetData(productRecoms)

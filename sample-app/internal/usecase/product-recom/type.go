@@ -18,7 +18,6 @@ type (
 	// SingleUserResultMeta meta data for single user's product recommendation result
 	SingleUserResultMeta struct {
 		OverallAffinities float32
-		Threshold         float32
 	}
 	// GetRecommendationByUserIDOptions available options for GetRecommendationByUserID method
 	GetRecommendationByUserIDOptions struct {

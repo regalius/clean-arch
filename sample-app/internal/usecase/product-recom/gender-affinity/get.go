@@ -2,20 +2,20 @@ package genderaffinity
 
 import (
 	"context"
+	"log"
 
-	gPAModel "github.com/regalius/clean-arch/sample-app/internal/model/gender-product-affinity"
+	sliceUtils "github.com/regalius/clean-arch/sample-app/common/slice"
 	gPARepo "github.com/regalius/clean-arch/sample-app/internal/repository/gender-product-affinity"
 	pRecomUCase "github.com/regalius/clean-arch/sample-app/internal/usecase/product-recom"
 )
 
-func (uc productRecomGenderUsecase) GetRecommendationByUserID(userID int64, options pRecomUCase.GetRecommendationByUserIDoptions) (recommendation pRecomUCase.SingleUserResult, err error) {
-	ctx := context.Background()
+func (uc productRecomGenderUsecase) GetRecommendationByUserID(ctx context.Context, userID int64, options pRecomUCase.GetRecommendationByUserIDOptions) (recommendation pRecomUCase.SingleUserResult, err error) {
 	user, err := uc.userRepo.GetUserByID(ctx, userID)
 	if err != nil {
 		log.Println("[Usecase/PRecom/GAffinity] Failed to fetch user", err)
 		return
 	}
-	gPAffinity, err := genderPAffinityRepo.GetGenderProductAffinitiesByGender(
+	gPAffinity, err := uc.genderPAffinityRepo.GetGenderProductAffinitiesByGender(
 		ctx, user.Gender, genderThreshold,
 		gPARepo.GetGenderProductAffinitiesByGenderOptions{
 			Limit: options.Limit,
@@ -34,15 +34,16 @@ func (uc productRecomGenderUsecase) GetRecommendationByUserID(userID int64, opti
 	}
 
 	products, err := uc.productRepo.GetByIDList(ctx, selectedPIDs)
-	
+
 	var productRecoms []pRecomUCase.ProductRecom
-	for index, product := products {
+	for _, product := range products {
 		affinityArrIndex := sliceUtils.IndexOfInt64(selectedPIDs, product.ID)
 
 		productRecom := pRecomUCase.ProductRecom{
-			Product: product,
-			Affinity: processedAffinities[affinityArrIndex],
+			Product:  product,
+			Affinity: processedAffinities[affinityArrIndex].AffinityScore,
 		}
+		productRecoms = append(productRecoms, productRecom)
 	}
 
 	recommendation.SetData(productRecoms)
