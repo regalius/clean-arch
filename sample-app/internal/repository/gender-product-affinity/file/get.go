@@ -25,7 +25,7 @@ func (r fileGenderProductAffinityRepository) GetGenderProductAffinitiesByPID(ctx
 }
 
 // GetGenderProductAffinitiesByGender get closest gender product affinity given gender degree and threshold
-func (r fileGenderProductAffinityRepository) GetGenderProductAffinitiesByGender(ctx context.Context, gender float32, threshold float32, options gPARepo.GetGenderProductAffinitiesByGenderOptions) (gPAffinities []gPAModel.GenderProductAffinity, err error) {
+func (r fileGenderProductAffinityRepository) GetGenderProductAffinitiesByGender(ctx context.Context, gender float32, threshold float32, options gPARepo.GetGenderProductAffinitiesByGenderOptions) (gPAffinities []gPAModel.GenderProductAffinityWithScore, err error) {
 	if r.buffer == nil || len(r.buffer) <= 0 {
 		return
 	}
@@ -33,33 +33,39 @@ func (r fileGenderProductAffinityRepository) GetGenderProductAffinitiesByGender(
 		options.Limit = gPARepo.DefaultGetGenderProductAffinitiesByGenderOptions.Limit
 	}
 	var (
-		maxDistance float64
-		distances   []float64
+		maxScore float64
+		scores   []float64
 	)
 	threshold64 := float64(threshold)
 
 	for i, affinity := range r.buffer {
-		distance := math.Abs(float64(affinity.GenderAffinity - gender))
-		if distance <= threshold64 {
+		score := math.Abs(float64(affinity.GenderAffinity - gender))
+		if score <= threshold64 {
 			if len(gPAffinities) < options.Limit {
-				if i == 0 || maxDistance <= distance {
-					maxDistance = distance
+				if i == 0 || maxScore <= score {
+					maxScore = score
 				}
-				gPAffinities = append(gPAffinities, affinity)
-				distances = append(distances, distance)
-			} else if distance < maxDistance {
-				nextMaxDistanceCandidate := float64(0)
+				gPAffinities = append(gPAffinities, gPAModel.GenderProductAffinityWithScore{
+					GenderProductAffinity: affinity,
+					AffinityScore:         float32(score),
+				})
+				scores = append(scores, score)
+			} else if score < maxScore {
+				nextMaxScoreCandidate := float64(0)
 
-				for index := len(distances) - 1; index >= 0; index-- {
-					selectedDistance := distances[index]
-					if selectedDistance >= maxDistance {
-						distances[index] = distance
-						gPAffinities[index] = affinity
-					} else if selectedDistance >= nextMaxDistanceCandidate {
-						nextMaxDistanceCandidate = selectedDistance
+				for index := len(scores) - 1; index >= 0; index-- {
+					selectedDistance := scores[index]
+					if selectedDistance >= maxScore {
+						scores[index] = score
+						gPAffinities[index] = gPAModel.GenderProductAffinityWithScore{
+							GenderProductAffinity: affinity,
+							AffinityScore:         float32(score),
+						}
+					} else if selectedDistance >= nextMaxScoreCandidate {
+						nextMaxScoreCandidate = selectedDistance
 					}
 				}
-				maxDistance = nextMaxDistanceCandidate
+				maxScore = nextMaxScoreCandidate
 			}
 		}
 	}

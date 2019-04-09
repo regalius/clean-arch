@@ -1,7 +1,7 @@
 package productrecom
 
 import (
-	pModel "github.com/regalius/clean-arch/sample-app/pkg/model/product"
+	pModel "github.com/regalius/clean-arch/sample-app/internal/model/product"
 )
 
 type (
@@ -12,16 +12,16 @@ type (
 	}
 	// ProductRecom recommended product
 	ProductRecom struct {
-		Product    pModel.Product
-		Confidence float32
+		pModel.Product
+		Affinity float32
 	}
 	// SingleUserResultMeta meta data for single user's product recommendation result
 	SingleUserResultMeta struct {
-		OverallConfidence float32
+		OverallAffinities float32
 		Threshold         float32
 	}
-	// GetRecommendationForUserIDOptions available options for GetRecommendationForUserID method
-	GetRecommendationForUserIDOptions struct {
+	// GetRecommendationByUserIDOptions available options for GetRecommendationByUserID method
+	GetRecommendationByUserIDOptions struct {
 		Limit int
 	}
 )

@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	pFileRepo "github.com/regalius/clean-arch/sample-app/pkg/repository/product/file"
+	pFileRepo "github.com/regalius/clean-arch/sample-app/internal/repository/product/file"
 )
 
 func main() {

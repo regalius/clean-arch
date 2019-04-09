@@ -7,4 +7,9 @@ type (
 		ProductID      int64
 		GenderAffinity float32
 	}
+	// GenderProductAffinityWithScore model that represents gender and product affinity and its computed score
+	GenderProductAffinityWithScore struct {
+		GenderProductAffinity
+		AffinityScore float32
+	}
 )
