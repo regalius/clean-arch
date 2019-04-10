@@ -1,4 +1,4 @@
-all: test build
+all: test build pb
 clean:
 	@rm ./recom-engine
 	@rm ./perso-engine
@@ -22,3 +22,7 @@ dev-perso:
 test:
 	@go test -race ./cmd/recom-engine && \
 	@go test -race ./cmd/perso-engine
+
+.PHONY: pb
+pb:
+	@$(MAKE) -C pkg/grpc/recom-engine
