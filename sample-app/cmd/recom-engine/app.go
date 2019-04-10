@@ -42,5 +42,6 @@ func main() {
 
 	pRecomHTTPDelivery.NewHTTPProductRecomDelivery(router, pRGenderUcase, pRUserUcase, pRMultiUcase)
 
+	log.Println("[RecomEngine] HTTP Handler listen on :8080")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }

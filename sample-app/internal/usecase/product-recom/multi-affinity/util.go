@@ -11,14 +11,14 @@ import (
 func boostWithMagicFormula(gPAffinities []gPAModel.GenderProductAffinityWithScore, uPAffinities []uPAModel.UserProductAffinity, limit int) []combinedAffinities {
 	affinityMap := make(map[int64]float32)
 	for _, gPAffinity := range gPAffinities {
-		currAffinity := (gPAffinity.AffinityScore * gPAffinityMultiplier)
+		currAffinity := (gPAffinity.AffinityScore * gPAffinityMultiplier) / (gPAffinityMultiplier + uPAffinityMultiplier)
 		affinityMap[gPAffinity.ProductID] = currAffinity
 	}
 
 	for _, uPAffinity := range uPAffinities {
-		currAffinity := uPAffinity.AffinityScore * uPAffinityMultiplier
+		currAffinity := (uPAffinity.AffinityScore * uPAffinityMultiplier) / (gPAffinityMultiplier + uPAffinityMultiplier)
 		if affinityMap[uPAffinity.ProductID] != 0 {
-			currAffinity += affinityMap[uPAffinity.ProductID]
+			affinityMap[uPAffinity.ProductID] += currAffinity
 		}
 	}
 
@@ -31,8 +31,15 @@ func boostWithMagicFormula(gPAffinities []gPAModel.GenderProductAffinityWithScor
 	}
 
 	sort.Slice(affinities, func(i, j int) bool {
-		return affinities[i].AffinityScore < affinities[j].AffinityScore
+		return affinities[i].AffinityScore > affinities[j].AffinityScore
 	})
 
-	return affinities[0:limit]
+	var max int
+	if len(affinities) < limit {
+		max = len(affinities)
+	} else {
+		max = limit
+	}
+
+	return affinities[0:max]
 }

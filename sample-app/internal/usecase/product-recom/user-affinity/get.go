@@ -15,6 +15,11 @@ func (uc productRecomUserUsecase) GetRecommendationByUserID(ctx context.Context,
 		log.Println("[Usecase/PRecom/UAffinity] Failed to fetch user", err)
 		return
 	}
+
+	if options.Limit == 0 {
+		options.Limit = pRecomUCase.DefaultGetRecommendationByUserIDOptions.Limit
+	}
+
 	uPAffinity, err := uc.userPAffinityRepo.GetUserProductAffinitiesByUserID(
 		ctx,
 		user.ID,
@@ -26,10 +31,8 @@ func (uc productRecomUserUsecase) GetRecommendationByUserID(ctx context.Context,
 		return
 	}
 
-	processedAffinities := boostWithMagicFormula(uPAffinity, options.Limit)
-
 	var selectedPIDs []int64
-	for _, affinity := range processedAffinities {
+	for _, affinity := range uPAffinity {
 		selectedPIDs = append(selectedPIDs, affinity.ProductID)
 	}
 
@@ -38,10 +41,9 @@ func (uc productRecomUserUsecase) GetRecommendationByUserID(ctx context.Context,
 	var productRecoms []pRecomUCase.ProductRecom
 	for _, product := range products {
 		affinityArrIndex := sliceUtils.IndexOfInt64(selectedPIDs, product.ID)
-
 		productRecom := pRecomUCase.ProductRecom{
 			Product:  product,
-			Affinity: processedAffinities[affinityArrIndex].AffinityScore,
+			Affinity: uPAffinity[affinityArrIndex].AffinityScore,
 		}
 		productRecoms = append(productRecoms, productRecom)
 	}

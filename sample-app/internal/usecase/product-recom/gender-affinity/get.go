@@ -15,6 +15,11 @@ func (uc productRecomGenderUsecase) GetRecommendationByUserID(ctx context.Contex
 		log.Println("[Usecase/PRecom/GAffinity] Failed to fetch user", err)
 		return
 	}
+
+	if options.Limit == 0 {
+		options.Limit = pRecomUCase.DefaultGetRecommendationByUserIDOptions.Limit
+	}
+
 	gPAffinity, err := uc.genderPAffinityRepo.GetGenderProductAffinitiesByGender(
 		ctx, user.Gender, genderThreshold,
 		gPARepo.GetGenderProductAffinitiesByGenderOptions{
@@ -26,10 +31,8 @@ func (uc productRecomGenderUsecase) GetRecommendationByUserID(ctx context.Contex
 		return
 	}
 
-	processedAffinities := boostWithMagicFormula(gPAffinity, options.Limit)
-
 	var selectedPIDs []int64
-	for _, affinity := range processedAffinities {
+	for _, affinity := range gPAffinity {
 		selectedPIDs = append(selectedPIDs, affinity.ProductID)
 	}
 
@@ -41,7 +44,7 @@ func (uc productRecomGenderUsecase) GetRecommendationByUserID(ctx context.Contex
 
 		productRecom := pRecomUCase.ProductRecom{
 			Product:  product,
-			Affinity: processedAffinities[affinityArrIndex].AffinityScore,
+			Affinity: gPAffinity[affinityArrIndex].AffinityScore,
 		}
 		productRecoms = append(productRecoms, productRecom)
 	}

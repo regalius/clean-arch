@@ -8,8 +8,15 @@ import (
 )
 
 // GetFullImagePath get full image path from image object
-func (i Image) GetFullImagePath() string {
-	return fmt.Sprintf("%s/%s", i.Path, i.Name)
+func (i Image) GetFullImagePath(baseURL string) (result string) {
+	fullURL, err := url.Parse(baseURL)
+	if err != nil {
+		log.Println("[Model/Product] Error parsing baseURL: ", err.Error())
+		return
+	}
+	fullURL.Path += fmt.Sprintf("%s/%s", i.Path, i.Name)
+	result = fullURL.String()
+	return
 }
 
 // GetURL Get URL of the product given baseURL to be appended

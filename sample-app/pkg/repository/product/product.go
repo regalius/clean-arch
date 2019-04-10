@@ -3,16 +3,17 @@ package product
 import (
 	"io"
 
-	pModel "github.com/regalius/clean-arch/sample-app/internal/model/product"
 	pRepo "github.com/regalius/clean-arch/sample-app/internal/repository/product"
 	pFileRepo "github.com/regalius/clean-arch/sample-app/internal/repository/product/file"
 )
 
-type Product = pModel.Product
-type ProductImage = pModel.Image
-type ProductRepository = pRepo.Repository
-type ProductRepositoryMock = pRepo.RepositoryMock
+// Repository interface for product repository
+type Repository = pRepo.Repository
 
-func NewProductFileRepository(file io.Reader) ProductRepository {
+// RepositoryMock interface mock for ProductRepository
+type RepositoryMock = pRepo.RepositoryMock
+
+// NewProductFileRepository create new file-based product repository
+func NewProductFileRepository(file io.Reader) Repository {
 	return pFileRepo.NewFileProductRepository(file)
 }

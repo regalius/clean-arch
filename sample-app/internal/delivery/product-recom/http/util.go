@@ -38,7 +38,7 @@ func mapProductRecomResultToResponse(recomm pRecomUCase.SingleUserResult, rootUR
 		}
 
 		for _, image := range product.Images {
-			productItem.Images = append(productItem.Images, image.GetFullImagePath())
+			productItem.Images = append(productItem.Images, image.GetFullImagePath(rootURL))
 		}
 
 		response.Data = append(response.Data, productItem)

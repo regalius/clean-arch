@@ -2,6 +2,7 @@ package file
 
 import (
 	"context"
+	"sort"
 
 	uPAModel "github.com/regalius/clean-arch/sample-app/internal/model/user-product-affinity"
 	uPARepo "github.com/regalius/clean-arch/sample-app/internal/repository/user-product-affinity"
@@ -35,9 +36,22 @@ func (r fileUserProductAffinityRepository) GetUserProductAffinitiesByUserID(ctx 
 	}
 
 	for _, affinity := range r.buffer {
-		if affinity.UserID == userID && (options.Limit == -1 || len(uPAffinities) < options.Limit) {
+		if affinity.UserID == userID {
 			uPAffinities = append(uPAffinities, affinity)
 		}
+	}
+
+	if options.Limit > 0 {
+		sort.Slice(uPAffinities, func(i, j int) bool {
+			return uPAffinities[i].AffinityScore > uPAffinities[j].AffinityScore
+		})
+		var max int
+		if len(uPAffinities) < options.Limit {
+			max = len(uPAffinities)
+		} else {
+			max = options.Limit
+		}
+		uPAffinities = uPAffinities[0:max]
 	}
 
 	return

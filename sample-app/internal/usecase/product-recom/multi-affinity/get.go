@@ -2,6 +2,7 @@ package multiaffinity
 
 import (
 	"context"
+	"log"
 	"sync"
 
 	sliceUtils "github.com/regalius/clean-arch/sample-app/common/slice"
@@ -14,10 +15,18 @@ import (
 
 func (uc productRecomMultiUsecase) GetRecommendationByUserID(ctx context.Context, userID int64, options pRecomUCase.GetRecommendationByUserIDOptions) (recommendation pRecomUCase.SingleUserResult, err error) {
 	user, err := uc.userRepo.GetUserByID(ctx, userID)
+	if err != nil {
+		log.Println("[Usecase/PRecom/UAffinity] Failed to fetch user", err)
+		return
+	}
 
 	var wg sync.WaitGroup
 	var gPAffinities []gPAModel.GenderProductAffinityWithScore
 	var uPAffinities []uPAModel.UserProductAffinity
+
+	if options.Limit == 0 {
+		options.Limit = pRecomUCase.DefaultGetRecommendationByUserIDOptions.Limit
+	}
 
 	wg.Add(1)
 	go func() {

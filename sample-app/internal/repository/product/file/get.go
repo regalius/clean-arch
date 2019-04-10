@@ -56,14 +56,11 @@ func (r fileProductRepository) GetByIDList(ctx context.Context, ids []int64) (re
 	if r.buffer == nil || len(r.buffer) <= 0 {
 		return
 	}
+	result = make([]pModel.Product, len(ids))
 
 	for _, product := range r.buffer {
-		if len(ids) == 0 {
-			break
-		}
 		if index := sliceUtils.IndexOfInt64(ids, product.ID); index != -1 {
-			ids = sliceUtils.ResliceInt64(ids, index)
-			result = append(result, product)
+			result[index] = product
 		}
 	}
 
