@@ -18,7 +18,7 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
-type GetMultiProductRecomRequest struct {
+type GetProductRecomRequest struct {
 	UserID               int64    `protobuf:"varint,1,opt,name=userID" json:"userID,omitempty"`
 	Limit                int32    `protobuf:"varint,2,opt,name=limit" json:"limit,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -26,45 +26,45 @@ type GetMultiProductRecomRequest struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetMultiProductRecomRequest) Reset()         { *m = GetMultiProductRecomRequest{} }
-func (m *GetMultiProductRecomRequest) String() string { return proto.CompactTextString(m) }
-func (*GetMultiProductRecomRequest) ProtoMessage()    {}
-func (*GetMultiProductRecomRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_product_recom_ff5a6320cfd9c573, []int{0}
+func (m *GetProductRecomRequest) Reset()         { *m = GetProductRecomRequest{} }
+func (m *GetProductRecomRequest) String() string { return proto.CompactTextString(m) }
+func (*GetProductRecomRequest) ProtoMessage()    {}
+func (*GetProductRecomRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_product_recom_b4e3faaf20c90db0, []int{0}
 }
-func (m *GetMultiProductRecomRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetMultiProductRecomRequest.Unmarshal(m, b)
+func (m *GetProductRecomRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetProductRecomRequest.Unmarshal(m, b)
 }
-func (m *GetMultiProductRecomRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetMultiProductRecomRequest.Marshal(b, m, deterministic)
+func (m *GetProductRecomRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetProductRecomRequest.Marshal(b, m, deterministic)
 }
-func (dst *GetMultiProductRecomRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetMultiProductRecomRequest.Merge(dst, src)
+func (dst *GetProductRecomRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetProductRecomRequest.Merge(dst, src)
 }
-func (m *GetMultiProductRecomRequest) XXX_Size() int {
-	return xxx_messageInfo_GetMultiProductRecomRequest.Size(m)
+func (m *GetProductRecomRequest) XXX_Size() int {
+	return xxx_messageInfo_GetProductRecomRequest.Size(m)
 }
-func (m *GetMultiProductRecomRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetMultiProductRecomRequest.DiscardUnknown(m)
+func (m *GetProductRecomRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetProductRecomRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetMultiProductRecomRequest proto.InternalMessageInfo
+var xxx_messageInfo_GetProductRecomRequest proto.InternalMessageInfo
 
-func (m *GetMultiProductRecomRequest) GetUserID() int64 {
+func (m *GetProductRecomRequest) GetUserID() int64 {
 	if m != nil {
 		return m.UserID
 	}
 	return 0
 }
 
-func (m *GetMultiProductRecomRequest) GetLimit() int32 {
+func (m *GetProductRecomRequest) GetLimit() int32 {
 	if m != nil {
 		return m.Limit
 	}
 	return 0
 }
 
-type GetMultiProductRecomResponse struct {
+type GetProductRecomResponse struct {
 	Data                 []*ProductRecom   `protobuf:"bytes,1,rep,name=data" json:"data,omitempty"`
 	Meta                 *ProductRecomMeta `protobuf:"bytes,2,opt,name=meta" json:"meta,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
@@ -72,38 +72,38 @@ type GetMultiProductRecomResponse struct {
 	XXX_sizecache        int32             `json:"-"`
 }
 
-func (m *GetMultiProductRecomResponse) Reset()         { *m = GetMultiProductRecomResponse{} }
-func (m *GetMultiProductRecomResponse) String() string { return proto.CompactTextString(m) }
-func (*GetMultiProductRecomResponse) ProtoMessage()    {}
-func (*GetMultiProductRecomResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_product_recom_ff5a6320cfd9c573, []int{1}
+func (m *GetProductRecomResponse) Reset()         { *m = GetProductRecomResponse{} }
+func (m *GetProductRecomResponse) String() string { return proto.CompactTextString(m) }
+func (*GetProductRecomResponse) ProtoMessage()    {}
+func (*GetProductRecomResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_product_recom_b4e3faaf20c90db0, []int{1}
 }
-func (m *GetMultiProductRecomResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetMultiProductRecomResponse.Unmarshal(m, b)
+func (m *GetProductRecomResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetProductRecomResponse.Unmarshal(m, b)
 }
-func (m *GetMultiProductRecomResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetMultiProductRecomResponse.Marshal(b, m, deterministic)
+func (m *GetProductRecomResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetProductRecomResponse.Marshal(b, m, deterministic)
 }
-func (dst *GetMultiProductRecomResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetMultiProductRecomResponse.Merge(dst, src)
+func (dst *GetProductRecomResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetProductRecomResponse.Merge(dst, src)
 }
-func (m *GetMultiProductRecomResponse) XXX_Size() int {
-	return xxx_messageInfo_GetMultiProductRecomResponse.Size(m)
+func (m *GetProductRecomResponse) XXX_Size() int {
+	return xxx_messageInfo_GetProductRecomResponse.Size(m)
 }
-func (m *GetMultiProductRecomResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetMultiProductRecomResponse.DiscardUnknown(m)
+func (m *GetProductRecomResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetProductRecomResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetMultiProductRecomResponse proto.InternalMessageInfo
+var xxx_messageInfo_GetProductRecomResponse proto.InternalMessageInfo
 
-func (m *GetMultiProductRecomResponse) GetData() []*ProductRecom {
+func (m *GetProductRecomResponse) GetData() []*ProductRecom {
 	if m != nil {
 		return m.Data
 	}
 	return nil
 }
 
-func (m *GetMultiProductRecomResponse) GetMeta() *ProductRecomMeta {
+func (m *GetProductRecomResponse) GetMeta() *ProductRecomMeta {
 	if m != nil {
 		return m.Meta
 	}
@@ -111,7 +111,7 @@ func (m *GetMultiProductRecomResponse) GetMeta() *ProductRecomMeta {
 }
 
 type ProductRecomMeta struct {
-	OverallAffinities    string   `protobuf:"bytes,1,opt,name=overallAffinities" json:"overallAffinities,omitempty"`
+	OverallAffinities    float32  `protobuf:"fixed32,1,opt,name=overallAffinities" json:"overallAffinities,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -121,7 +121,7 @@ func (m *ProductRecomMeta) Reset()         { *m = ProductRecomMeta{} }
 func (m *ProductRecomMeta) String() string { return proto.CompactTextString(m) }
 func (*ProductRecomMeta) ProtoMessage()    {}
 func (*ProductRecomMeta) Descriptor() ([]byte, []int) {
-	return fileDescriptor_product_recom_ff5a6320cfd9c573, []int{2}
+	return fileDescriptor_product_recom_b4e3faaf20c90db0, []int{2}
 }
 func (m *ProductRecomMeta) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ProductRecomMeta.Unmarshal(m, b)
@@ -141,11 +141,11 @@ func (m *ProductRecomMeta) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ProductRecomMeta proto.InternalMessageInfo
 
-func (m *ProductRecomMeta) GetOverallAffinities() string {
+func (m *ProductRecomMeta) GetOverallAffinities() float32 {
 	if m != nil {
 		return m.OverallAffinities
 	}
-	return ""
+	return 0
 }
 
 type ProductRecom struct {
@@ -166,7 +166,7 @@ func (m *ProductRecom) Reset()         { *m = ProductRecom{} }
 func (m *ProductRecom) String() string { return proto.CompactTextString(m) }
 func (*ProductRecom) ProtoMessage()    {}
 func (*ProductRecom) Descriptor() ([]byte, []int) {
-	return fileDescriptor_product_recom_ff5a6320cfd9c573, []int{3}
+	return fileDescriptor_product_recom_b4e3faaf20c90db0, []int{3}
 }
 func (m *ProductRecom) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ProductRecom.Unmarshal(m, b)
@@ -243,34 +243,34 @@ func (m *ProductRecom) GetAffinity() float32 {
 }
 
 func init() {
-	proto.RegisterType((*GetMultiProductRecomRequest)(nil), "recomengine.GetMultiProductRecomRequest")
-	proto.RegisterType((*GetMultiProductRecomResponse)(nil), "recomengine.GetMultiProductRecomResponse")
+	proto.RegisterType((*GetProductRecomRequest)(nil), "recomengine.GetProductRecomRequest")
+	proto.RegisterType((*GetProductRecomResponse)(nil), "recomengine.GetProductRecomResponse")
 	proto.RegisterType((*ProductRecomMeta)(nil), "recomengine.productRecomMeta")
 	proto.RegisterType((*ProductRecom)(nil), "recomengine.productRecom")
 }
 
-func init() { proto.RegisterFile("product-recom.proto", fileDescriptor_product_recom_ff5a6320cfd9c573) }
+func init() { proto.RegisterFile("product-recom.proto", fileDescriptor_product_recom_b4e3faaf20c90db0) }
 
-var fileDescriptor_product_recom_ff5a6320cfd9c573 = []byte{
-	// 318 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x91, 0xdb, 0x4a, 0x03, 0x31,
-	0x10, 0x86, 0xd9, 0x43, 0x4f, 0x53, 0x91, 0x3a, 0x8a, 0xc6, 0x13, 0x2c, 0x7b, 0xb5, 0x17, 0xb6,
-	0x60, 0x7d, 0x01, 0x05, 0x41, 0x8a, 0x14, 0x24, 0x2f, 0x20, 0x71, 0x33, 0xad, 0x81, 0xdd, 0xcd,
-	0x9a, 0x64, 0x05, 0xef, 0x7c, 0x35, 0xdf, 0x4c, 0x36, 0x5b, 0xa5, 0x78, 0xb8, 0x9b, 0x2f, 0xff,
-	0x9f, 0xc9, 0x3f, 0x19, 0xd8, 0xaf, 0x8d, 0x96, 0x4d, 0xee, 0xa6, 0x86, 0x72, 0x5d, 0xce, 0x6a,
-	0xa3, 0x9d, 0xc6, 0xb1, 0x07, 0xaa, 0xd6, 0xaa, 0xa2, 0xf4, 0x1e, 0x4e, 0xef, 0xc8, 0x2d, 0x9b,
-	0xc2, 0xa9, 0x87, 0xce, 0xcb, 0x5b, 0x95, 0xd3, 0x4b, 0x43, 0xd6, 0xe1, 0x21, 0xf4, 0x1b, 0x4b,
-	0x66, 0x71, 0xcb, 0x82, 0x24, 0xc8, 0x22, 0xbe, 0x21, 0x3c, 0x80, 0x5e, 0xa1, 0x4a, 0xe5, 0x58,
-	0x98, 0x04, 0x59, 0x8f, 0x77, 0x90, 0xbe, 0x07, 0x70, 0xf6, 0x77, 0x37, 0x5b, 0xeb, 0xca, 0x12,
-	0x4e, 0x21, 0x96, 0xc2, 0x09, 0x16, 0x24, 0x51, 0x36, 0x9e, 0x1f, 0xcf, 0xb6, 0x92, 0xcc, 0xea,
-	0xed, 0x0b, 0xde, 0x86, 0x97, 0x10, 0x97, 0xe4, 0x84, 0x7f, 0x64, 0x3c, 0x3f, 0xff, 0xd7, 0xbe,
-	0x24, 0x27, 0xb8, 0xb7, 0xa6, 0xd7, 0x30, 0xf9, 0xa9, 0xe0, 0x05, 0xec, 0xe9, 0x57, 0x32, 0xa2,
-	0x28, 0x6e, 0x56, 0x2b, 0x55, 0x29, 0xa7, 0xc8, 0xfa, 0x79, 0x46, 0xfc, 0xb7, 0x90, 0x7e, 0x04,
-	0xb0, 0xb3, 0xdd, 0x02, 0x77, 0x21, 0x54, 0x72, 0x33, 0x7f, 0xa8, 0x64, 0x3b, 0x7b, 0x6d, 0x54,
-	0x4e, 0x3e, 0x56, 0xc4, 0x3b, 0xc0, 0x23, 0x18, 0xd8, 0x67, 0x5d, 0x3f, 0x2a, 0xc9, 0xa2, 0xee,
-	0xab, 0x5a, 0x5c, 0x48, 0x64, 0x30, 0xc8, 0x0d, 0x09, 0x47, 0x92, 0xc5, 0x5e, 0xf8, 0x42, 0x9c,
-	0x40, 0xd4, 0x98, 0x82, 0xf5, 0x7c, 0x92, 0xb6, 0x44, 0x84, 0xb8, 0x12, 0x25, 0xb1, 0xbe, 0x3f,
-	0xf2, 0x75, 0xbb, 0x02, 0x55, 0x8a, 0x35, 0x59, 0x36, 0x48, 0xa2, 0x6c, 0xc4, 0x37, 0x84, 0x27,
-	0x30, 0x14, 0x5d, 0xea, 0x37, 0x36, 0x4c, 0x82, 0x2c, 0xe4, 0xdf, 0xfc, 0xd4, 0xf7, 0x9b, 0xbe,
-	0xfa, 0x0c, 0x00, 0x00, 0xff, 0xff, 0x13, 0xc9, 0x2c, 0x81, 0x00, 0x02, 0x00, 0x00,
+var fileDescriptor_product_recom_b4e3faaf20c90db0 = []byte{
+	// 314 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x91, 0xdd, 0x4a, 0x3b, 0x31,
+	0x10, 0xc5, 0xd9, 0x8f, 0x7e, 0x4d, 0xff, 0xfc, 0xa9, 0xa3, 0xb4, 0x51, 0x10, 0x96, 0xbd, 0xda,
+	0x0b, 0x5b, 0xb0, 0xbe, 0x80, 0x82, 0x28, 0xbd, 0x10, 0x24, 0x2f, 0x20, 0x71, 0x33, 0xad, 0x81,
+	0xdd, 0xcd, 0x9a, 0x64, 0x05, 0xf1, 0xe9, 0x7c, 0x33, 0xd9, 0x6c, 0x95, 0xc5, 0xe2, 0xdd, 0xfc,
+	0x72, 0x4e, 0x26, 0x73, 0x26, 0x70, 0x5c, 0x1b, 0x2d, 0x9b, 0xdc, 0x2d, 0x0d, 0xe5, 0xba, 0x5c,
+	0xd5, 0x46, 0x3b, 0x8d, 0x53, 0x0f, 0x54, 0xed, 0x54, 0x45, 0xe9, 0x1d, 0xcc, 0xef, 0xc9, 0x3d,
+	0x76, 0x36, 0xde, 0x0a, 0x9c, 0x5e, 0x1b, 0xb2, 0x0e, 0xe7, 0x30, 0x6c, 0x2c, 0x99, 0xcd, 0x2d,
+	0x0b, 0x92, 0x20, 0x8b, 0xf8, 0x9e, 0xf0, 0x04, 0x06, 0x85, 0x2a, 0x95, 0x63, 0x61, 0x12, 0x64,
+	0x03, 0xde, 0x41, 0xfa, 0x01, 0x8b, 0x83, 0x3e, 0xb6, 0xd6, 0x95, 0x25, 0x5c, 0x42, 0x2c, 0x85,
+	0x13, 0x2c, 0x48, 0xa2, 0x6c, 0xba, 0x3e, 0x5d, 0xf5, 0x9e, 0x5f, 0xd5, 0xfd, 0x0b, 0xde, 0x86,
+	0x97, 0x10, 0x97, 0xe4, 0x84, 0x6f, 0x3f, 0x5d, 0x9f, 0xff, 0x69, 0x7f, 0x20, 0x27, 0xb8, 0xb7,
+	0xa6, 0xd7, 0x30, 0xfb, 0xad, 0xe0, 0x05, 0x1c, 0xe9, 0x37, 0x32, 0xa2, 0x28, 0x6e, 0xb6, 0x5b,
+	0x55, 0x29, 0xa7, 0xc8, 0xfa, 0x24, 0x21, 0x3f, 0x14, 0xd2, 0xcf, 0x00, 0xfe, 0xf5, 0x5b, 0xe0,
+	0x7f, 0x08, 0x95, 0xdc, 0x27, 0x0f, 0x95, 0x6c, 0x53, 0xd7, 0x46, 0xe5, 0xe4, 0xc7, 0x8a, 0x78,
+	0x07, 0xb8, 0x80, 0x91, 0x7d, 0xd1, 0xf5, 0x93, 0x92, 0x2c, 0xea, 0x96, 0xd4, 0xe2, 0x46, 0x22,
+	0x83, 0x51, 0x6e, 0x48, 0x38, 0x92, 0x2c, 0xf6, 0xc2, 0x37, 0xe2, 0x0c, 0xa2, 0xc6, 0x14, 0x6c,
+	0x90, 0x04, 0xd9, 0x84, 0xb7, 0x25, 0x22, 0xc4, 0x95, 0x28, 0x89, 0x0d, 0xfd, 0x91, 0xaf, 0xdb,
+	0xe5, 0xab, 0x52, 0xec, 0xc8, 0xb2, 0x51, 0x12, 0x65, 0x13, 0xbe, 0x27, 0x3c, 0x83, 0xb1, 0xe8,
+	0xa6, 0x7e, 0x67, 0x63, 0x1f, 0xe6, 0x87, 0x9f, 0x87, 0xfe, 0x7b, 0xaf, 0xbe, 0x02, 0x00, 0x00,
+	0xff, 0xff, 0x6c, 0x22, 0xd0, 0xd3, 0xf5, 0x01, 0x00, 0x00,
 }

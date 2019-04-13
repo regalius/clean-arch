@@ -5,19 +5,19 @@ import (
 	pRecomUcase "github.com/regalius/clean-arch/sample-app/internal/usecase/product-recom"
 )
 
-type httpProductRecomDelivery struct {
+type HttpRecomEngineDelivery struct {
 	router            *r.Router
 	pRecomGenderUcase pRecomUcase.Usecase
 	pRecomUserUcase   pRecomUcase.Usecase
 	pRecomMultiUcase  pRecomUcase.Usecase
 }
 
-func NewHTTPProductRecomDelivery(router *r.Router,
+func NewHttpRecomEngineDelivery(router *r.Router,
 	pRecomGenderUcase pRecomUcase.Usecase,
 	pRecomUserUcase pRecomUcase.Usecase,
-	pRecomMultiUcase pRecomUcase.Usecase) httpProductRecomDelivery {
+	pRecomMultiUcase pRecomUcase.Usecase) HttpRecomEngineDelivery {
 
-	handler := &httpProductRecomDelivery{
+	handler := &HttpRecomEngineDelivery{
 		router,
 		pRecomGenderUcase,
 		pRecomUserUcase,

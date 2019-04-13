@@ -5,5 +5,7 @@ package recomengine;
 import "product-recom.proto";
 
 service RecomEngine {
-    rpc GetMultiProductRecomByUserID (GetMultiProductRecomRequest) returns (GetMultiProductRecomResponse);
+    rpc GetMultiAffinityProductRecom (GetProductRecomRequest) returns (GetProductRecomResponse);
+    rpc GetGenderAffinityProductRecom (GetProductRecomRequest) returns (GetProductRecomResponse);
+    rpc GetUserAffinityProductRecom (GetProductRecomRequest) returns (GetProductRecomResponse);
 }

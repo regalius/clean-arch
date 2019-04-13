@@ -14,10 +14,10 @@ build-perso:
 	@go build ./cmd/perso-engine
 
 dev-recom:
-	@go build ./cmd/recom-engine && ./recom-engine
+	@export GO_ENV=development && go build ./cmd/recom-engine && ./recom-engine
 
 dev-perso:
-	@go build ./cmd/perso-engine && ./perso-engine
+	@@export GO_ENV=development && go build ./cmd/perso-engine && ./perso-engine
 
 test:
 	@go test -race ./cmd/recom-engine && \

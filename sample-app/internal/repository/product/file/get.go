@@ -28,7 +28,8 @@ func (r fileProductRepository) GetByID(ctx context.Context, id int64) (result pM
 // GetByIDRange get products from file given its min and max ID
 func (r fileProductRepository) GetByIDRange(ctx context.Context, minID int64, maxID int64) (result []pModel.Product, err error) {
 	if maxID < minID {
-		err = errors.New("[Repo/Product/File] MaxID is smaller than MinID")
+		log.Println("[Repo/Product/File] MaxID is smaller than MinID")
+		err = errors.New("MaxID is smaller than MinID")
 		return
 	}
 

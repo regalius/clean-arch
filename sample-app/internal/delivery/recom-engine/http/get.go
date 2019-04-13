@@ -10,7 +10,7 @@ import (
 	pRecomUCase "github.com/regalius/clean-arch/sample-app/internal/usecase/product-recom"
 )
 
-func (d httpProductRecomDelivery) getProductRecommendationMulti(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+func (d HttpRecomEngineDelivery) getProductRecommendationMulti(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	userID, err := getUserIDFromParams(ps)
 	if err != nil {
 		log.Println(err)
@@ -45,7 +45,7 @@ func (d httpProductRecomDelivery) getProductRecommendationMulti(w http.ResponseW
 	httpUtils.WriteJSON(w, response, http.StatusOK)
 }
 
-func (d httpProductRecomDelivery) getProductRecommendationGender(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+func (d HttpRecomEngineDelivery) getProductRecommendationGender(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	userID, err := getUserIDFromParams(ps)
 	if err != nil {
 		log.Println(err)
@@ -79,7 +79,7 @@ func (d httpProductRecomDelivery) getProductRecommendationGender(w http.Response
 	httpUtils.WriteJSON(w, response, http.StatusOK)
 }
 
-func (d httpProductRecomDelivery) getProductRecommendationUser(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+func (d HttpRecomEngineDelivery) getProductRecommendationUser(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	userID, err := getUserIDFromParams(ps)
 	if err != nil {
 		log.Println(err)

@@ -2,18 +2,18 @@ syntax = "proto3";
 
 package recomengine;
 
-message GetMultiProductRecomRequest {
+message GetProductRecomRequest {
     int64 userID = 1;
     int32 limit = 2;
 }
 
-message GetMultiProductRecomResponse {
+message GetProductRecomResponse {
     repeated productRecom data = 1;
     productRecomMeta meta = 2;
 }
 
 message productRecomMeta {
-    string overallAffinities = 1;
+    float overallAffinities = 1;
 }
 
 message productRecom {
